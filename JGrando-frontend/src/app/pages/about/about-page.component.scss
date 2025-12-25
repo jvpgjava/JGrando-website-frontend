@@ -1,0 +1,244 @@
+:host {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(124, 58, 237, 0.24), transparent 32%),
+    radial-gradient(circle at 82% 8%, rgba(88, 28, 135, 0.2), transparent 26%),
+    linear-gradient(135deg, #0b0b0b, #120822 55%, #1f0b3e 100%);
+  background-size: 160% 160%;
+  animation: gradientShift 14s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+
+:host::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 18%, rgba(0, 0, 0, 0.22));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.about-page {
+  position: relative;
+  z-index: 2;
+}
+
+.blob {
+  position: absolute;
+  width: 58vw;
+  max-width: 900px;
+  aspect-ratio: 1;
+  top: 14%;
+  left: 52%;
+  transform: translate(-50%, 0);
+  background: radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.55), rgba(111, 66, 193, 0.28), rgba(44, 19, 72, 0));
+  filter: blur(70px);
+  opacity: 0.9;
+  animation:
+    blobFloat 18s ease-in-out infinite alternate,
+    blobPulse 9s ease-in-out infinite alternate;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 24px 48px;
+  background: transparent;
+  border: none;
+  margin: 0 auto 28px;
+  max-width: 1080px;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  background-size: 160% 160%;
+  animation: none;
+  z-index: 0;
+}
+
+.about-hero>* {
+  position: relative;
+  z-index: 1;
+}
+
+.about-title-box,
+.skills-title-box {
+  display: inline-flex;
+  border: 1px solid #ffffff;
+  padding: 10px 24px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-intro {
+  max-width: 680px;
+  margin: 0 auto 28px;
+  color: #d6d6e3;
+  line-height: 1.6;
+}
+
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 24px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.ghost-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.about-divider {
+  width: 54px;
+  height: 2px;
+  background: #ffffff;
+  margin: 16px auto 28px;
+}
+
+.about-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-columns h3 {
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.about-columns p {
+  color: #d6d6e3;
+  line-height: 1.5;
+}
+
+.skills-section {
+  background: transparent;
+  color: #ffffff;
+  padding: 48px 24px 64px;
+  text-align: center;
+  max-width: 1180px;
+  margin: 0 auto 40px;
+}
+
+.skills-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.skill-block {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.skill-block h4 {
+  margin: 0 0 12px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pill {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #e6e6f0;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@keyframes purpleFlow {
+  0% {
+    background-position: 20% 30%, 80% 20%, 50% 50%;
+  }
+
+  50% {
+    background-position: 30% 40%, 70% 10%, 40% 60%;
+  }
+
+  100% {
+    background-position: 40% 50%, 60% 0%, 60% 40%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%, 100% 100%, 100% 100%;
+  }
+}
+
+@keyframes blobFloat {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-46%, 4%) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-52%, -4%) scale(0.96);
+  }
+}
+
+@keyframes blobPulse {
+  0% {
+    opacity: 0.78;
+    filter: blur(76px) saturate(115%);
+  }
+
+  50% {
+    opacity: 1;
+    filter: blur(64px) saturate(145%);
+  }
+
+  100% {
+    opacity: 0.82;
+    filter: blur(72px) saturate(120%);
+  }
+}
+
+@media (max-width: 640px) {
+  .about-hero {
+    padding: 60px 16px 36px;
+  }
+
+  .skills-section {
+    padding: 36px 16px 48px;
+  }
+}
