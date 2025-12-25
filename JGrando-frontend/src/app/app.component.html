@@ -1,0 +1,28 @@
+<div class="layout">
+  <header class="topbar glass">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <a routerLink="/" aria-label="João Grando">
+          <img class="brand-logo" src="assets/LogoJGrando.png" alt="Logotipo João Vitor Prestes Grando">
+        </a>
+      </div>
+      <nav class="nav">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link">Início</a>
+        <a routerLink="/servicos" routerLinkActive="active" class="nav-link">Serviços</a>
+        <a routerLink="/sobre" routerLinkActive="active" class="nav-link">Sobre</a>
+        <a routerLink="/contato" routerLinkActive="active" class="nav-link">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© {{ currentYear }} João Vitor Prestes Grando. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</div>
