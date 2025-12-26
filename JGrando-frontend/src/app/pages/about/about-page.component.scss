@@ -1,10 +1,10 @@
 :host {
   position: relative;
   display: block;
-  min-height: 100vh;
+  min-height: calc(100vh - 66px);
   background:
-    radial-gradient(circle at 18% 12%, rgba(124, 58, 237, 0.24), transparent 32%),
-    radial-gradient(circle at 82% 8%, rgba(88, 28, 135, 0.2), transparent 26%),
+    radial-gradient(circle at 20% 15%, rgba(124, 58, 237, 0.24), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(88, 28, 135, 0.2), transparent 26%),
     linear-gradient(135deg, #0b0b0b, #120822 55%, #1f0b3e 100%);
   background-size: 160% 160%;
   animation: gradientShift 14s ease-in-out infinite alternate;
@@ -15,7 +15,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 18%, rgba(0, 0, 0, 0.22));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 18%, rgba(0, 0, 0, 0.25));
   pointer-events: none;
   z-index: 1;
 }
@@ -30,8 +30,8 @@
   width: 58vw;
   max-width: 900px;
   aspect-ratio: 1;
-  top: 14%;
-  left: 52%;
+  top: 18%;
+  left: 50%;
   transform: translate(-50%, 0);
   background: radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.55), rgba(111, 66, 193, 0.28), rgba(44, 19, 72, 0));
   filter: blur(70px);
@@ -48,27 +48,18 @@
   overflow: hidden;
   color: #ffffff;
   text-align: center;
-  padding: 80px 24px 48px;
-  background: transparent;
-  border: none;
-  margin: 0 auto 28px;
-  max-width: 1080px;
+  padding: 48px 16px;
+  z-index: 5;
 }
 
-.about-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  background-size: 160% 160%;
-  animation: none;
-  z-index: 0;
-}
-
-.about-hero>* {
+.about-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
   position: relative;
-  z-index: 1;
+  z-index: 5;
 }
+
 
 .about-title-box,
 .skills-title-box {
@@ -77,68 +68,34 @@
   padding: 10px 24px;
   letter-spacing: 2px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin: 0 auto 16px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
 }
 
 .about-intro {
-  max-width: 680px;
-  margin: 0 auto 28px;
+  max-width: 860px;
+  margin: 0 auto;
   color: #d6d6e3;
   line-height: 1.6;
 }
 
-.ghost-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 24px;
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  font-weight: 700;
-  border-radius: 24px;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-
-.ghost-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.about-divider {
-  width: 54px;
-  height: 2px;
-  background: #ffffff;
-  margin: 16px auto 28px;
-}
-
-.about-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-columns h3 {
-  letter-spacing: 1px;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.about-columns p {
-  color: #d6d6e3;
-  line-height: 1.5;
-}
-
 .skills-section {
   background: transparent;
-  color: #ffffff;
-  padding: 48px 24px 64px;
+  color: #f5f5ff;
+  padding: 24px 0 32px;
+  position: relative;
+  z-index: 5;
   text-align: center;
+}
+
+.skills-wrap {
   max-width: 1180px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 5;
 }
 
 .skills-grid {
@@ -149,11 +106,14 @@
 }
 
 .skill-block {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 8, 20, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 20px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 5;
+  text-align: center;
 }
 
 .skill-block h4 {
@@ -176,20 +136,6 @@
   font-size: 12px;
   color: #e6e6f0;
   background: rgba(255, 255, 255, 0.03);
-}
-
-@keyframes purpleFlow {
-  0% {
-    background-position: 20% 30%, 80% 20%, 50% 50%;
-  }
-
-  50% {
-    background-position: 30% 40%, 70% 10%, 40% 60%;
-  }
-
-  100% {
-    background-position: 40% 50%, 60% 0%, 60% 40%;
-  }
 }
 
 @keyframes gradientShift {
