@@ -57,11 +57,14 @@
 
 .services-title {
   display: inline-flex;
-  padding: 10px 24px;
   border: 1px solid #ffffff;
+  padding: 10px 24px;
   letter-spacing: 2px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin: 0 auto 16px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
 }
 
 .services-lead {
@@ -77,6 +80,7 @@
   padding: 24px 0 32px;
   position: relative;
   z-index: 5;
+  text-align: center;
 }
 
 .cards-3 {
@@ -95,6 +99,7 @@
   line-height: 1.5;
   position: relative;
   z-index: 5;
+  text-align: center;
 }
 
 .service-card h3 {
