@@ -1,7 +1,7 @@
 :host {
   position: relative;
   display: block;
-  min-height: calc(100vh - 66px);
+  min-height: calc(95vh - 66px);
   background:
     radial-gradient(circle at 20% 15%, rgba(124, 58, 237, 0.24), transparent 32%),
     radial-gradient(circle at 80% 10%, rgba(88, 28, 135, 0.2), transparent 26%),
@@ -48,7 +48,12 @@
   overflow: hidden;
   color: #ffffff;
   text-align: center;
-  padding: 48px 16px;
+  padding: 80px 16px 48px;
+  min-height: calc(100vh - 66px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 5;
 }
 
@@ -137,17 +142,70 @@ app-contact-form {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .contact-hero {
     padding: 36px 12px;
   }
 
+  .contact-wrap {
+    padding: 0 12px;
+  }
+
   .contact-title-box {
     font-size: 14px;
-    padding: 10px 22px;
+    padding: 8px 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .contact-intro {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .contact-form-shell {
+    padding: 16px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .blob {
+    width: 80vw;
+    top: 20%;
+  }
+
+  .contact-hero {
+    padding: 28px 12px 24px;
+  }
+
+  .contact-title-box {
+    font-size: 12px;
+    padding: 8px 16px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .contact-intro {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
   }
 
   .contact-form-shell {
     padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero {
+    padding: 24px 12px 20px;
+  }
+
+  .contact-intro {
+    font-size: 12px;
+  }
+
+  .contact-form-shell {
+    padding: 12px;
   }
 }

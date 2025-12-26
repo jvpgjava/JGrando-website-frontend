@@ -68,6 +68,7 @@ import { finalize } from 'rxjs';
         align-items: center;
         justify-content: center;
         z-index: 999;
+        padding: 16px;
       }
       .modal {
         background: #111025;
@@ -76,13 +77,28 @@ import { finalize } from 'rxjs';
         border-radius: 12px;
         padding: 20px;
         max-width: 360px;
-        width: 90%;
+        width: 100%;
         text-align: center;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
       }
       .btn.primary {
         margin-top: 12px;
         width: 100%;
+      }
+      @media (max-width: 480px) {
+        .modal-backdrop {
+          padding: 12px;
+        }
+        .modal {
+          padding: 16px;
+          border-radius: 10px;
+        }
+        .modal h3 {
+          font-size: 18px;
+        }
+        .modal p {
+          font-size: 14px;
+        }
       }
     `
   ],

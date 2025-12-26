@@ -97,13 +97,88 @@
   min-height: 24px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
+  .topbar-inner {
+    padding: 14px 16px;
+  }
+
   .nav {
-    flex: 1;
-    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 11px;
+  }
+
+  .brand-logo {
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding-top: 48px;
+  }
+
+  .topbar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
 
   .topbar-inner {
-    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .brand {
+    min-width: auto;
+  }
+
+  .brand-logo {
+    height: 22px;
+  }
+
+  .nav {
+    gap: 6px;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 10px;
+    padding: 4px 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .footer-content {
+    font-size: 12px;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .topbar-inner {
+    padding: 10px 10px;
+    gap: 8px;
+  }
+
+  .brand-logo {
+    height: 20px;
+  }
+
+  .nav-link {
+    font-size: 9px;
+    padding: 4px 5px;
+  }
+
+  .footer-content {
+    font-size: 11px;
   }
 }

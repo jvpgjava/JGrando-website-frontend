@@ -168,3 +168,70 @@
   }
 }
 
+@media (max-width: 768px) {
+  .services-hero {
+    padding: 36px 12px;
+  }
+
+  .services-wrap {
+    padding: 0 12px;
+  }
+
+  .services-title {
+    font-size: 14px;
+    padding: 8px 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .services-lead {
+    font-size: 14px;
+  }
+
+  .cards-3 {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .services-section {
+    padding: 20px 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hero {
+    padding: 28px 12px;
+  }
+
+  .services-title {
+    font-size: 12px;
+    padding: 8px 16px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .services-lead {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .service-card,
+  .target,
+  .step {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .service-card h3 {
+    font-size: 16px;
+  }
+
+  .step-title {
+    font-size: 15px;
+  }
+}
+

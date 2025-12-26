@@ -16,17 +16,16 @@ import { ExperienceItem, ProfileResponse, ProjectItem, ServiceItem, SkillGroup }
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent implements OnInit {
-  profile$: Observable<ProfileResponse | null> = this.store.profile$;
-  skills$: Observable<SkillGroup[]> = this.store.profile$.pipe(mapProfile((p) => p?.skills ?? []));
-  experiences$: Observable<ExperienceItem[]> = this.store.profile$.pipe(mapProfile((p) => p?.experiences ?? []));
-  projects$: Observable<ProjectItem[]> = this.store.profile$.pipe(mapProfile((p) => p?.projects ?? []));
-  services$: Observable<ServiceItem[]> = this.store.profile$.pipe(mapProfile((p) => p?.services ?? []));
+  profile$!: Observable<ProfileResponse | null>;
+  skills$!: Observable<SkillGroup[]>;
+  experiences$!: Observable<ExperienceItem[]>;
+  projects$!: Observable<ProjectItem[]>;
+  services$!: Observable<ServiceItem[]>;
 
   fallback = {
     name: 'João Vitor Prestes Grando',
     headline: 'Desenvolvedor Fullstack | Java, Spring Boot, Angular',
-    location: 'Cachoeirinha, RS - Brasil',
-    email: 'joaovitorpg1234@gmail.com',
+    email: 'jgrando.dev@gmail.com',
     phone: '+55 51 98522-2903',
     summary:
       'Experiência em backends Java/Spring e frontends Angular, com foco em escalabilidade, observabilidade e UX.',
@@ -38,9 +37,14 @@ export class HomePageComponent implements OnInit {
     ]
   };
 
-  constructor(private store: ProfileStoreService) {}
+  constructor(private store: ProfileStoreService) { }
 
   ngOnInit(): void {
+    this.profile$ = this.store.profile$;
+    this.skills$ = this.store.profile$.pipe(mapProfile((p) => p?.skills ?? []));
+    this.experiences$ = this.store.profile$.pipe(mapProfile((p) => p?.experiences ?? []));
+    this.projects$ = this.store.profile$.pipe(mapProfile((p) => p?.projects ?? []));
+    this.services$ = this.store.profile$.pipe(mapProfile((p) => p?.services ?? []));
     this.store.ensureLoaded();
   }
 
