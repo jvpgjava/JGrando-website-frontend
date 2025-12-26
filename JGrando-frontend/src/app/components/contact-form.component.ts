@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { ContactRequest } from '../models';
@@ -7,7 +8,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
     <form class="card form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="field">
@@ -49,11 +50,12 @@ import { finalize } from 'rxjs';
       </button>
     </form>
 
-    <div class="modal-backdrop" *ngIf="showModal">
-      <div class="modal">
-        <h3>Mensagem enviada!</h3>
+    <div class="modal-backdrop" *ngIf="showModal" (click)="closeModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal-icon">✓</div>
+        <h3>Mensagem enviada com sucesso!</h3>
         <p>Recebi seu contato e retornarei em breve.</p>
-        <p *ngIf="referenceId"><strong>Protocolo:</strong> {{ referenceId }}</p>
+        <p *ngIf="referenceId" class="reference">Protocolo: <strong>{{ referenceId }}</strong></p>
         <button class="btn primary" (click)="closeModal()">Fechar</button>
       </div>
     </div>
@@ -75,15 +77,58 @@ import { finalize } from 'rxjs';
         color: #ffffff;
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 12px;
-        padding: 20px;
-        max-width: 360px;
+        padding: 32px 24px 24px;
+        max-width: 400px;
         width: 100%;
         text-align: center;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+        animation: modalSlideIn 0.3s ease-out;
+      }
+      .modal-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 16px;
+        background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+      .modal h3 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #ffffff;
+      }
+      .modal p {
+        margin: 0 0 8px;
+        color: #d6d6e3;
+        line-height: 1.5;
+      }
+      .reference {
+        font-size: 13px;
+        color: #a855f7;
+        margin-top: 12px;
+      }
+      .reference strong {
+        color: #c084fc;
+        font-weight: 600;
       }
       .btn.primary {
-        margin-top: 12px;
+        margin-top: 20px;
         width: 100%;
+      }
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
       @media (max-width: 480px) {
         .modal-backdrop {
