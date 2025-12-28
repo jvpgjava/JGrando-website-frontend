@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng.js build",
+    "build:prod": "node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng.js build frontend --configuration production",
+    "build:prod:low-mem": "node --max-old-space-size=2048 ./node_modules/@angular/cli/bin/ng.js build frontend --configuration production-low-memory",
     "test": "ng test",
     "lint": "ng lint"
   },
