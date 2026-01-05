@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { ContactRequest } from '../models';
-import { finalize } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-form',
@@ -45,7 +45,7 @@ import { finalize } from 'rxjs';
           placeholder="Contexto do projeto, prazo ou dúvida"
         ></textarea>
       </div>
-      <button class="btn" type="submit" [disabled]="loading || form.invalid">
+      <button class="btn" type="submit" [disabled]="loading || isFormInvalid()">
         {{ loading ? 'Enviando...' : 'Enviar mensagem' }}
       </button>
     </form>
@@ -120,6 +120,16 @@ import { finalize } from 'rxjs';
         margin-top: 20px;
         width: 100%;
       }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: rgba(124, 58, 237, 0.3);
+        transform: none;
+      }
+      .btn:disabled:hover {
+        transform: none;
+        box-shadow: none;
+      }
       @keyframes modalSlideIn {
         from {
           opacity: 0;
@@ -149,7 +159,7 @@ import { finalize } from 'rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactFormComponent {
+export class ContactFormComponent implements OnInit, OnDestroy {
   @Output() sent = new EventEmitter<void>();
 
   form = this.fb.group({
@@ -159,13 +169,32 @@ export class ContactFormComponent {
     message: ['', [Validators.required, Validators.maxLength(1200)]]
   });
 
+  isFormInvalid(): boolean {
+    return this.form.invalid || 
+           !this.form.get('name')?.value?.trim() || 
+           !this.form.get('email')?.value?.trim() || 
+           !this.form.get('message')?.value?.trim();
+  }
+
   loading = false;
   statusMessage = '';
   statusClass: 'success' | 'error' | '' = '';
   referenceId = '';
   showModal = false;
+  private formSubscription?: Subscription;
 
   constructor(private fb: FormBuilder, private api: ApiService, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    // Garante que a detecção de mudanças seja acionada quando o formulário muda
+    this.formSubscription = this.form.valueChanges.subscribe(() => {
+      this.cdr.markForCheck();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.formSubscription?.unsubscribe();
+  }
 
   onSubmit(): void {
     if (this.form.invalid || this.loading) return;

@@ -88,17 +88,94 @@
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
-  background: rgba(12, 8, 20, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 16px;
-  backdrop-filter: blur(8px);
   position: relative;
   z-index: 5;
 }
 
 app-contact-form {
   display: block;
+}
+
+::ng-deep app-contact-form {
+  form {
+    width: 100%;
+    background: rgba(12, 8, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 5;
+    transition: all 0.4s cubic-bezier(0.4, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(168, 85, 247, 0.15) 0%,
+        rgba(124, 58, 237, 0.1) 30%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 2px;
+      background: linear-gradient(
+        135deg,
+        rgba(168, 85, 247, 0.4),
+        rgba(124, 58, 237, 0.3),
+        rgba(88, 28, 135, 0.2),
+        transparent
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    &:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 
+        0 20px 50px rgba(124, 58, 237, 0.4),
+        0 10px 25px rgba(168, 85, 247, 0.3),
+        0 0 30px rgba(124, 58, 237, 0.2),
+        inset 0 0 30px rgba(168, 85, 247, 0.1);
+      border-color: rgba(168, 85, 247, 0.6);
+      background: rgba(12, 8, 20, 0.7);
+
+      &::before {
+        opacity: 1;
+        animation: lightSweep 2s ease-in-out infinite;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    > * {
+      position: relative;
+      z-index: 3;
+    }
+  }
 }
 
 @keyframes blobFloat {
@@ -142,6 +219,18 @@ app-contact-form {
   }
 }
 
+@keyframes lightSweep {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-30%, -30%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 @media (max-width: 768px) {
   .contact-hero {
     padding: 36px 12px;
@@ -163,7 +252,6 @@ app-contact-form {
   }
 
   .contact-form-shell {
-    padding: 16px;
     max-width: 100%;
   }
 }
